@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ServiceCard from "../components/ServiceCard";
+import "../styles/Services.css";
 
 function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -31,15 +32,14 @@ function ServicesPage() {
   if (error) return <p style={{ textAlign: "center", color: "red" }}>{error}</p>;
 
   return (
-    <div style={{ maxWidth: "900px", margin: "30px auto", padding: "0 20px" }}>
+    <div className="services-container">
       <h2>Available Services</h2>
 
-      <div style={{ marginBottom: "20px" }}>
-        <label>Filter by category: </label>
+      <div className="filter-bar">
+        <label>Filter by category:</label>
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          style={{ padding: "6px" }}
         >
           <option value="">All</option>
           <option value="Electrician">Electrician</option>
@@ -47,7 +47,7 @@ function ServicesPage() {
         </select>
       </div>
 
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className="service-grid">
         {filteredServices.length === 0 ? (
           <p>No services found.</p>
         ) : (

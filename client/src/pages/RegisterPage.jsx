@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import "../styles/Auth.css";
 
 function RegisterPage() {
   const [name, setName] = useState("");
@@ -35,55 +36,51 @@ function RegisterPage() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
+    <div className="auth-container">
       <h2>Register</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="auth-error">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="form-group">
           <label>Name</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            style={{ width: "100%", padding: "8px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="form-group">
           <label>Email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{ width: "100%", padding: "8px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="form-group">
           <label>Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={{ width: "100%", padding: "8px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="form-group">
           <label>Confirm Password</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            style={{ width: "100%", padding: "8px" }}
           />
         </div>
-        <button type="submit" style={{ padding: "10px 20px" }}>
+        <button type="submit" className="auth-button">
           Register
         </button>
       </form>
-      <p>
+      <p className="auth-footer">
         Already have an account? <Link to="/login">Login here</Link>
       </p>
     </div>
