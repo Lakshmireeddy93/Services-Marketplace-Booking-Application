@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
+import ServiceDetails from './pages/ServiceDetails';
+import BookingPage from './pages/BookingPage';
+import BookingSuccess from './pages/BookingSuccess';
+import BookingHistory from './pages/BookingHistory';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Navbar/>
+      <Routes>
+         {/* <Route
+          path="/"
+          element={<ServicesPage />}
+        />
+        <Route
+          path="/services"
+          element={<ServicesPage />}
+        /> */}
+        <Route
+          path="/services/:id"
+          element={<ServiceDetails />}
+        />
+        <Route
+          path="/booking"
+          element={<BookingPage />}
+        />
+         <Route
+          path="/success"
+          element={<BookingSuccess />}
+        />
+         <Route
+          path="/booking-history"
+          element={<BookingHistory />}
+        />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 

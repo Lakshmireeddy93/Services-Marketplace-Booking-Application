@@ -1,0 +1,58 @@
+.success-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  background:#f3f6fb;
+
+}
+
+.success-card{
+  width:420px;
+  background:white;
+  padding:40px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+}
+
+.success-icon{
+  font-size:70px;
+
+}
+
+.success-card h1{
+  color:#28a745;
+
+}
+
+.success-card p{
+  color:#555;
+  font-size:17px;
+
+}
+
+.booking-id{
+  margin:20px 0;
+  font-weight:bold;
+  color:#2563eb;
+
+}
+
+.success-card button{
+  width:100%;
+  padding:13px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-size:17px;
+  cursor:pointer;
+
+}
+
+.success-card button:hover{
+  background:#1d4ed8;
+
+}
