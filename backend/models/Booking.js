@@ -12,8 +12,25 @@ const bookingSchema = new mongoose.Schema(
             ref: "Service",
             required: true
         },
+        name:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Service",
+            required: true
+        },
+        phone:{
+            type: String,
+            required: true,
+        },
+        address:{
+            type: String,
+            required: true
+        },
         date:{
             type: Date,
+            required: true
+        },
+        time:{
+            type: String,
             required: true
         },
         status:{

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 import "../styles/Auth.css";
 
 function RegisterPage() {
@@ -9,6 +10,7 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,6 +22,7 @@ function RegisterPage() {
       return;
     }
 
+    setLoading(true);
     try {
       await axios.post("/api/auth/register", {
         name,
@@ -32,13 +35,16 @@ function RegisterPage() {
       setError(
         err.response?.data?.message || "Registration failed. Please try again."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container page-fade">
       <h2>Register</h2>
       {error && <p className="auth-error">{error}</p>}
+      {loading && <Spinner message="Creating account..." />}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name</label>
@@ -76,8 +82,8 @@ function RegisterPage() {
             required
           />
         </div>
-        <button type="submit" className="auth-button">
-          Register
+        <button type="submit" className="auth-button" disabled={loading}>
+          {loading ? "Creating account..." : "Register"}
         </button>
       </form>
       <p className="auth-footer">

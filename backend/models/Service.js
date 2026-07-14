@@ -21,9 +21,12 @@ const serviceSchema = new mongoose.Schema(
     image:{
       type: String,
       default: "",
+    },
+    rating:{
+      type: Number,
+      default: 0,
     }
-  }
-  , {timestamps: true}
+  }, {timestamps: true}
 );
 
 module.exports = mongoose.model("Service", serviceSchema);
