@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ServiceCard from "../components/ServiceCard";
+import Spinner from "../components/Spinner";
 import "../styles/Services.css";
 
 function ServicesPage() {
@@ -28,16 +29,24 @@ function ServicesPage() {
     ? services.filter((s) => s.category === categoryFilter)
     : services;
 
-  if (loading) return <p style={{ textAlign: "center" }}>Loading services...</p>;
-  if (error) return <p style={{ textAlign: "center", color: "red" }}>{error}</p>;
+  if (loading) return <Spinner message="Fetching services..." />;
 
   return (
-    <div className="services-container">
-      <h2>Available Services</h2>
+    <div className="services-container page-fade">
+      <div className="services-header">
+        <h2>Available Services</h2>
+        <p className="services-subtitle">
+          Explore our curated list of trusted service providers and book the one
+          that fits your needs.
+        </p>
+      </div>
+
+      {error && <p className="error-text">{error}</p>}
 
       <div className="filter-bar">
-        <label>Filter by category:</label>
+        <label htmlFor="category-select">Filter by category:</label>
         <select
+          id="category-select"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
         >
@@ -59,5 +68,6 @@ function ServicesPage() {
     </div>
   );
 }
+
 
 export default ServicesPage;

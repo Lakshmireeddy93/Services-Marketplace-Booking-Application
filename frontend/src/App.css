@@ -28,6 +28,31 @@
   color: #61dafb;
 }
 
+.page-fade {
+  animation: fadeIn 0.35s ease-out both;
+}
+
+.error-text {
+  color: #fee2e2;
+  background: rgba(220, 38, 38, 0.1);
+  padding: 16px 18px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
