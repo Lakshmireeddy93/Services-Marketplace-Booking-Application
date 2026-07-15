@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, } from "react";
+import api from "../services/api";
 import ServiceCard from "../components/ServiceCard";
 import Spinner from "../components/Spinner";
 import "../styles/Services.css";
 
 function ServicesPage() {
   const [services, setServices] = useState([]);
+  console.log("Services from API:", services);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
@@ -13,7 +14,7 @@ function ServicesPage() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get("/api/services");
+       const response = await api.get("/services");
         setServices(response.data);
       } catch (err) {
         setError("Failed to load services. Please try again.");
@@ -53,12 +54,7 @@ function ServicesPage() {
           <option value="">All</option>
           <option value="Electrician">Electrician</option>
           <option value="Plumber">Plumber</option>
-          <option value="Carpenter">Carpenter</option>
           <option value="Painter">Painter</option>
-          <option value="Cleaner">Cleaner</option>
-          <option value="AC Technician">AC Technician</option>
-          <option value="Pest Control">Pest Control</option>
-          <option value="Appliance Repair">Appliance Repair</option>
         </select>
       </div>
 
@@ -74,5 +70,6 @@ function ServicesPage() {
     </div>
   );
 }
+
 
 export default ServicesPage;
