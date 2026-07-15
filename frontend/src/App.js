@@ -9,7 +9,7 @@ import ServicesPage from "./pages/ServicesPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PrivateRoute from "./components/PrivateRoute";
-
+import ServiceDetails from "./pages/ServiceDetails";
 function App() {
   return (
     <AuthProvider>
@@ -17,18 +17,29 @@ function App() {
         <Navbar />
         <main className="app-main page-fade">
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route
-              path="/services"
-              element={
-                <PrivateRoute>
-                  <ServicesPage />
-                </PrivateRoute>
-              }
-            />
-            <Route path="*" element={<NotFoundPage />} />
+           <Route path="/" element={<HomePage />} />
+<Route path="/login" element={<LoginPage />} />
+<Route path="/register" element={<RegisterPage />} />
+
+<Route
+  path="/services"
+  element={
+    <PrivateRoute>
+      <ServicesPage />
+    </PrivateRoute>
+  }
+/>
+
+<Route
+  path="/services/:id"
+  element={
+    <PrivateRoute>
+      <ServiceDetails />
+    </PrivateRoute>
+  }
+/>
+
+<Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <Footer />
