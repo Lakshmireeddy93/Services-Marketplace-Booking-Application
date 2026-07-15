@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Toast from "./Toast";
 import "../styles/Navbar.css";
 
 function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [toast, setToast] = useState(null);
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    setMenuOpen(false);
+    setToast({ message: "Logged out successfully", type: "success" });
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 800);
   };
 
   const initials = user?.name
@@ -24,6 +31,11 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      <Toast
+        message={toast?.message}
+        type={toast?.type}
+        onClose={() => setToast(null)}
+      />
       <Link to="/" className="navbar-brand">
         Services Marketplace
       </Link>

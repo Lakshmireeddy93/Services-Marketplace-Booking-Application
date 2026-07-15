@@ -53,6 +53,12 @@ function ServicesPage() {
           <option value="">All</option>
           <option value="Electrician">Electrician</option>
           <option value="Plumber">Plumber</option>
+          <option value="Carpenter">Carpenter</option>
+          <option value="Painter">Painter</option>
+          <option value="Cleaner">Cleaner</option>
+          <option value="AC Technician">AC Technician</option>
+          <option value="Pest Control">Pest Control</option>
+          <option value="Appliance Repair">Appliance Repair</option>
         </select>
       </div>
 
@@ -68,6 +74,5 @@ function ServicesPage() {
     </div>
   );
 }
-
 
 export default ServicesPage;

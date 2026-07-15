@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import Spinner from "../components/Spinner";
+import Toast from "../components/Toast";
 import "../styles/Auth.css";
 
 function LoginPage() {
@@ -10,6 +11,7 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState(null);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -25,18 +27,27 @@ function LoginPage() {
       });
 
       login(response.data.user, response.data.token);
-      navigate("/services");
+      setToast({ message: "Login successful!", type: "success" });
+
+      setTimeout(() => {
+        navigate("/services");
+      }, 1000);
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Login failed. Please try again."
-      );
-    } finally {
+      const message =
+        err.response?.data?.message || "Login failed. Please try again.";
+      setError(message);
+      setToast({ message, type: "error" });
       setLoading(false);
     }
   };
 
   return (
     <div className="auth-container page-fade">
+      <Toast
+        message={toast?.message}
+        type={toast?.type}
+        onClose={() => setToast(null)}
+      />
       <h2>Login</h2>
       {error && <p className="auth-error">{error}</p>}
       {loading && <Spinner message="Signing in..." />}

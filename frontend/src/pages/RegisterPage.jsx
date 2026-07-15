@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
+import Toast from "../components/Toast";
 import "../styles/Auth.css";
 
 function RegisterPage() {
@@ -11,6 +12,7 @@ function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,6 +21,7 @@ function RegisterPage() {
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
+      setToast({ message: "Passwords do not match", type: "error" });
       return;
     }
 
@@ -30,18 +33,27 @@ function RegisterPage() {
         password,
       });
 
-      navigate("/login");
+      setToast({ message: "Registration successful!", type: "success" });
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Registration failed. Please try again."
-      );
-    } finally {
+      const message =
+        err.response?.data?.message || "Registration failed. Please try again.";
+      setError(message);
+      setToast({ message, type: "error" });
       setLoading(false);
     }
   };
 
   return (
     <div className="auth-container page-fade">
+      <Toast
+        message={toast?.message}
+        type={toast?.type}
+        onClose={() => setToast(null)}
+      />
       <h2>Register</h2>
       {error && <p className="auth-error">{error}</p>}
       {loading && <Spinner message="Creating account..." />}
