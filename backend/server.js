@@ -11,6 +11,7 @@ connectDB();
 
 const authRoutes = require("./routes/authRoutes");
 const serviceRoutes = require("./routes/serviceRoutes");
+app.use("/api/services", serviceRoutes);
 const bookingRoutes = require("./routes/bookingRoutes");
 
 

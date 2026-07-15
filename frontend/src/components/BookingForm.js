@@ -28,15 +28,15 @@ function BookingForm({service}){
                 date:date,
                 time:time
             };
-            const response=await axios.post(
-                "https://localhost:5000/api/bookings",
-                bookingData,
-                {
-                    headers:{
-                        Authorization: `Bearer $ {token}`
-                    }
-                }
-            );
+           const response = await axios.post(
+           "http://localhost:5000/api/bookings",
+            bookingData,
+           {
+                headers: {
+                   Authorization: `Bearer ${token}`
+        }
+    }
+);
             navigate("/success", {
                 state : response.data
             });
