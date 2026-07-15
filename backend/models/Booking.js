@@ -16,11 +16,11 @@ const bookingSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        phone:{
+        phone: {
             type: String,
             required: true,
         },
-        address:{
+        address: {
             type: String,
             required: true
         },
