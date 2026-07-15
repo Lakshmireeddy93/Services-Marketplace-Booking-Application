@@ -15,7 +15,7 @@ import BookingPage from "./pages/BookingPage";
 import BookingSuccess from "./pages/BookingSuccess";
 import BookingHistory from "./pages/BookingHistory";
 import NotFoundPage from "./pages/NotFoundPage";
-import PrivateRoute from "./components/PrivateRoute";
+
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+
             <Route
               path="/services"
               element={
@@ -36,6 +37,43 @@ function App() {
                 </PrivateRoute>
               }
             />
+
+            <Route
+              path="/services/:id"
+              element={
+                <PrivateRoute>
+                  <ServiceDetails />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/booking"
+              element={
+                <PrivateRoute>
+                  <BookingPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/booking-success"
+              element={
+                <PrivateRoute>
+                  <BookingSuccess />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/booking-history"
+              element={
+                <PrivateRoute>
+                  <BookingHistory />
+                </PrivateRoute>
+              }
+            />
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
