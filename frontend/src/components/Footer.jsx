@@ -8,11 +8,6 @@ function Footer() {
           <span>Services Marketplace</span>
           <p>Connecting you with trusted local professionals.</p>
         </div>
-        <div className="footer-links">
-          <a href="/">Home</a>
-          <a href="/services">Services</a>
-          <a href="/register">Register</a>
-        </div>
       </div>
       <p className="footer-copyright">
         &copy; {new Date().getFullYear()} Services Marketplace. All rights reserved.
