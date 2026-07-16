@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f3f6fb;
+    background: #7e9dd3;
 }
 
 .booking-card{
     width:420px;
-    background: white;
+    background: rgb(92, 107, 167);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
