@@ -9,42 +9,52 @@ function BookingForm({service}){
     const [address, setAddress]=useState("");
     const [date, setDate]=useState("");
     const [time, setTime]=useState("");
-    async function handleSubmit(e){
-        e.preventDefault();
-        if (
-            !name || !phone || !address || !date || !time 
-        ) {
-            alert("Please fill all the details.");
-            return;
-        }
-        try {
-            const token =localStorage.getItem("token");
-            const bookingData={
-                service:service._id,
-                name: name,
-                phone: phone,
-                address: address,
-                date:date,
-                time:time
-            };
-           const response = await axios.post(
-           "http://localhost:5000/api/bookings",
+    async function handleSubmit(e) {
+          e.preventDefault();
+          console.log("Confirm Booking clicked");
+
+    if (!name || !phone || !address || !date || !time) {
+        alert("Please fill all the details.");
+        return;
+    }
+
+    try {
+        const token = localStorage.getItem("token");
+        console.log("Token:", token);
+
+        const bookingData = {
+            service: service._id,
+            name,
+            phone,
+            address,
+            date,
+            time,
+        };
+
+        const response = await axios.post(
+            "http://localhost:5000/api/bookings",
             bookingData,
-           {
+            {
                 headers: {
-                   Authorization: `Bearer ${token}`
-        }
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        console.log("Booking Success:", response.data);
+        navigate("/booking-success", {
+            state: response.data
+        });
+
+    } catch (error) {
+        console.log("ERROR:", error);
+        console.log("Status:", error.response?.status);
+        console.log("Data:", error.response?.data);
+
+        alert("Booking Failed");
     }
-);
-            navigate("/success", {
-                state : response.data
-            });
-        }
-        catch (error){
-            console.log(error);
-            alert ("Booking Failed");
-        }
-    }
+}
+    
 
     return(
         <div className="booking-container">
