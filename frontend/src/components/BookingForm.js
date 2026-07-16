@@ -9,9 +9,8 @@ function BookingForm({service}){
     const [address, setAddress]=useState("");
     const [date, setDate]=useState("");
     const [time, setTime]=useState("");
-    //runs when confirm booking button is clicked
     async function handleSubmit(e){
-        e.preventDefault();//prevent page refresh
+        e.preventDefault();
         if (
             !name || !phone || !address || !date || !time 
         ) {

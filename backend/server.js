@@ -9,14 +9,12 @@ const app = express();
 
 connectDB();
 
-const authRoutes = require("./routes/authRoutes");
-const serviceRoutes = require("./routes/serviceRoutes");
-app.use("/api/services", serviceRoutes);
-const bookingRoutes = require("./routes/bookingRoutes");
-
-
 app.use(cors());
 app.use(express.json());
+
+const authRoutes = require("./routes/authRoutes");
+const serviceRoutes = require("./routes/serviceRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);

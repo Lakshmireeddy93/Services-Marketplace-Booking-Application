@@ -28,7 +28,6 @@ function ServiceDetails(){
 
     function handleBookNow(){
         navigate("/booking", {
-            //sending selected service to booking page
             state: service
         });
     }

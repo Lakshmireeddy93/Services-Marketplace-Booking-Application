@@ -39,7 +39,7 @@ const getBookingById = async (req, res) => {
 const updateBooking = async(req, res)=>{
     try{
         const booking = await Booking.findByIdAndUpdate(req.params.id, req.body, 
-            { returnDocument: "after" });
+            { new: true });
         if(!booking){
             return res.status(404).json({ message: "Booking not found" });
         }
