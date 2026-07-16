@@ -235,3 +235,10 @@
     border-radius: 20px;
     box-shadow: 0 12px 32px rgba(99, 102, 241, 0.2);
 }
+.service-footer .primary-button {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    height: 32px;
+}

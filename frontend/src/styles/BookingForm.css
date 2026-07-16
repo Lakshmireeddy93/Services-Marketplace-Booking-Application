@@ -1,62 +1,88 @@
-.booking-container{
+.booking-container {
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: #7e9dd3;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.booking-card{
-    width:420px;
-    background: rgb(92, 107, 167);
+.booking-card {
+    width: 420px;
+    background: white;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.booking-card h2{
+
+.booking-card h1 {
     text-align: center;
-    color: #2c3e50;
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 8px;
 }
 
-.service-name{
+.booking-card p {
     text-align: center;
     color: #2563eb;
     font-size: 18px;
+    font-weight: bold;
+}
+
+.booking-card hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+
+.booking-card h2 {
+    text-align: center;
+    color: #2c3e50;
     margin-bottom: 20px;
 }
 
+
 .booking-card input,
-.booking-card textarea{
+.booking-card textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 15px;
     box-sizing: border-box;
+    outline: none;
 }
 
-.booking-card textarea{
-    resize: none;
+
+.booking-card input:focus,
+.booking-card textarea:focus {
+    border-color: #2563eb;
+}
+
+
+.booking-card textarea {
     height: 80px;
+    resize: none;
 }
 
-.booking-card label{
-    font-weight: bold;
-}
 
-.booking-card button{
+.booking-card button {
     width: 100%;
     padding: 12px;
     background: #2563eb;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 17px;
+    font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-.booking-card button:hover{
+
+.booking-card button:hover {
     background: #1d4ed8;
 }

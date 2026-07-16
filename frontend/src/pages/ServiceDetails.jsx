@@ -12,18 +12,26 @@ function ServiceDetails(){
     useEffect(()=>{
         fetchService();
     },[]);
-    async function fetchService(){
-        try{
-           const response = await api.get(`/services/${id}`);
-            setService(response.data);
-        }
-        catch (error){
-            setError("Unable to load service.");
-            console.log(error);
-        }
-        finally {
-            setLoading(false);
-        }
+    async function fetchService() {
+       try {
+        console.log("Service ID:", id);
+
+        const response = await api.get(`/services/${id}`);
+
+        console.log("Response:", response);
+        console.log("Response Data:", response.data);
+
+        setService(response.data);
+       } catch (error) {
+        console.log("ERROR:", error);
+        console.log("STATUS:", error.response?.status);
+        console.log("DATA:", error.response?.data);
+        console.log("MESSAGE:", error.message);
+
+        setError("Unable to load service.");
+      } finally {
+        setLoading(false);
+      }
     }
 
     function handleBookNow(){

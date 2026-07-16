@@ -1,0 +1,36 @@
+.booking-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.bookingcard {
+    width: 230px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+}
+
+.bookingcard:hover {
+    transform: translateY(-4px);
+}
+
+.bookingcard h2 {
+    text-align: center;
+    font-size: 17px;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.bookingcard p {
+    font-size: 13px;
+    color: #555;
+    margin: 7px 0;
+}
+
+.bookingcard strong {
+    color: #222;
+}

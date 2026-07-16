@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/BookingCard.css";
 
 function BookingCard({booking}){
     return(

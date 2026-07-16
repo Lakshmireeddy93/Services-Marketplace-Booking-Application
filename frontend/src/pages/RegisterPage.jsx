@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import Toast from "../components/Toast";
@@ -14,7 +14,7 @@ function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(null);
   const navigate = useNavigate();
-
+  const location = useLocation();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -36,7 +36,9 @@ function RegisterPage() {
       setToast({ message: "Registration successful!", type: "success" });
 
       setTimeout(() => {
-        navigate("/login");
+          navigate("/login", {
+           state: location.state,
+          });
       }, 1000);
     } catch (err) {
       const message =
@@ -99,7 +101,7 @@ function RegisterPage() {
         </button>
       </form>
       <p className="auth-footer">
-        Already have an account? <Link to="/login">Login here</Link>
+        Already have an account? <Link to="/login" state={location.state}> Login here</Link>
       </p>
     </div>
   );

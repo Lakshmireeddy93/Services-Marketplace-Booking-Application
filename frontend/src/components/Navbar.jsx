@@ -41,7 +41,7 @@ function Navbar() {
 
         {user ? (
           <>
-            <Link to="/services">Services</Link>
+           
             <Link to="/booking-history">My Bookings</Link>
 
             <div className="navbar-user-menu">

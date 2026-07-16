@@ -1,6 +1,7 @@
 import { getBookings } from "../services/bookingService";
 import React, { useState,useEffect } from "react";
 import BookingCard from "../components/BookingCard";
+import "../styles/BookingHistory.css";
 function BookingHistory(){
     const [bookings, setBookings]=useState([]);
     const [loading, setLoading]=useState(true);
@@ -29,26 +30,30 @@ function BookingHistory(){
 
 
     return (
-        <div>
-            <h2>My Bookings</h2>
-            {
-                bookings.length === 0?
-                (
-                    <p>No Bookings Found</p>
-                )
-                :
-                (
-                    bookings.map((booking)=>(
-                    <BookingCard
-                        key={booking._id}
-                        booking={booking}
-                    />
+    <div className="bookinghistory">
+        <h2>My Bookings</h2>
 
-                    )
+        {
+            bookings.length === 0 ?
+            (
+                <p>No Bookings Found</p>
+            )
+            :
+            (
+                <div className="booking-container">
+                    {
+                        bookings.map((booking)=>(
+                            <BookingCard
+                                key={booking._id}
+                                booking={booking}
+                            />
+                        ))
+                    }
+                </div>
+            )
+        }
 
-               ))
-            }
-        </div>
-    );
+    </div>
+);
 }
 export default BookingHistory;

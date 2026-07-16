@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Home.css";
+import api from "../services/api";
 
 const categoryImages = {
   Electrician: "/images/electrician.jpg",
@@ -15,31 +16,55 @@ const categoryImages = {
   "Men's Salon & Massage": "/images/mensalon.jpg",
 };
 
+
 function HomePage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/services")
-      .then((res) => res.json())
-      .then((data) => {
-        setServices(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to load services:", err);
-        setLoading(false);
-      });
+  fetch("/api/services")
+    .then((res) => {
+      console.log("Status:", res.status);
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Received data:", data);
+      console.log("Is Array?", Array.isArray(data));
+
+      setServices(data);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("Fetch Error:", err);
+      setLoading(false);
+    });
   }, []);
 
   return (
     <>
-      <div className="intro-banner">
-        <h1>Home services at your doorstep</h1>
-        <img src="/images/logo.jpg" alt="Services Marketplace" />
-      </div>
+     <div className="home-page">
+        <div className="hero">
+          <div className="hero-left">
+            <span className="home-badge">Trusted Local Professionals</span>
 
+            <h1>Find the trusted local help you need, faster.</h1>
+
+            <p>
+              Book electricians, plumbers, painters and many more trusted
+              professionals in just a few clicks.
+            </p>
+            <h2><strong>Home services at your doorstep
+            </strong></h2>
+            <p><strong>Checkout our Services below</strong></p>
+          </div>
+
+          <div className="hero-right">
+            <img src="/logo.png" alt="Services" />
+          </div>
+        </div>
+      </div>
       <div className="services-section">
         <h2>Available Services</h2>
 
@@ -59,50 +84,23 @@ function HomePage() {
               <p className="service-description">{service.description}</p>
               <div className="service-footer">
                 <span className="service-price">₹{service.price}</span>
-                <Link className="primary-button" to="/services">
-                  Book Now
-                </Link>
+                <button className="primary-button" onClick={() => {
+                  if (user) {
+                     navigate(`/services/${service._id}`);
+                  }  else {
+                      navigate("/login", {
+                      state: { service },
+                      });
+                     }
+                  }}
+                  >Book Now</button>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="home-page">
-        <div className="hero">
-          <div className="hero-left">
-            <span className="home-badge">Trusted Local Professionals</span>
-
-            <h1>Find the trusted local help you need, faster.</h1>
-
-            <p>
-              Book electricians, plumbers, painters and many more trusted
-              professionals in just a few clicks.
-            </p>
-
-            <div className="home-actions">
-              {user ? (
-                <Link className="primary-button" to="/services">
-                  Browse Services
-                </Link>
-              ) : (
-                <>
-                  <Link className="primary-button" to="/login">
-                    Login
-                  </Link>
-                  <Link className="secondary-button" to="/register">
-                    Register
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-
-          <div className="hero-right">
-            <img src="/logo.png" alt="Services" />
-          </div>
-        </div>
-      </div>
+     
     </>
   );
 }

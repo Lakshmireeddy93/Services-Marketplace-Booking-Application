@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link , useLocation} from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import Spinner from "../components/Spinner";
@@ -15,7 +15,7 @@ function LoginPage() {
 
   const { login } = useAuth();
   const navigate = useNavigate();
-
+  const location = useLocation();
   useEffect(() => {
     const savedToast = sessionStorage.getItem("toast");
 
@@ -44,7 +44,13 @@ function LoginPage() {
       });
 
       setTimeout(() => {
-        navigate("/services");
+        if (location.state?.service) {
+           navigate(`/services/${location.state.service._id}`, {
+           state: location.state.service,
+        });
+        } else {
+             navigate("/services");
+          }
       }, 1000);
     } catch (err) {
       const message =
@@ -64,6 +70,7 @@ function LoginPage() {
 
   return (
     <div className="auth-container page-fade">
+      
       <Toast
         message={toast?.message}
         type={toast?.type}
@@ -89,6 +96,7 @@ function LoginPage() {
         </div>
 
         <div className="form-group">
+
           <label>Password</label>
 
           <input
@@ -110,9 +118,11 @@ function LoginPage() {
 
       <p className="auth-footer">
         Don't have an account?{" "}
-        <Link to="/register">Register here</Link>
+       <Link to="/register" state={location.state}>
+        Register here</Link>
       </p>
     </div>
+    
   );
 }
 
