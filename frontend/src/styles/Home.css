@@ -1,92 +1,85 @@
-.home-page {
-  min-height: calc(100vh - 72px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+.home-page{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:60px;
+    background:linear-gradient(135deg,#eef2ff,#fdf2f8);
 }
 
-.home-card {
-  max-width: 720px;
-  width: 100%;
-  padding: 48px 40px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.14);
-  text-align: center;
-  animation: fadeIn 0.5s ease;
+.hero{
+    width:1200px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:60px;
 }
 
-.home-badge {
-  display: inline-flex;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: #eef2ff;
-  color: #5b21b6;
-  font-weight: 700;
-  font-size: 13px;
-  margin-bottom: 18px;
+.hero-left{
+    flex:1;
 }
 
-.home-card h1 {
-  margin: 0;
-  font-size: clamp(2.4rem, 4vw, 4rem);
-  color: #1f2937;
-  line-height: 1.05;
+.hero-right{
+    flex:1;
+    text-align:center;
 }
 
-.home-copy {
-  color: #4b5563;
-  margin: 24px auto 32px;
-  max-width: 680px;
-  font-size: 1rem;
-  line-height: 1.75;
+.hero-right img{
+    width:420px;
+    max-width:100%;
 }
 
-.home-actions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
+.home-badge{
+    background:#e0e7ff;
+    color:#4c1d95;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.hero h1{
+    font-size:52px;
+    margin:25px 0;
+    color:#1f2937;
+}
+
+.hero p{
+    font-size:18px;
+    color:#4b5563;
+    line-height:1.8;
+}
+
+.home-actions{
+    margin-top:35px;
+    display:flex;
+    gap:15px;
 }
 
 .primary-button,
-.secondary-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 170px;
-  padding: 14px 24px;
-  border-radius: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+.secondary-button{
+    padding:14px 30px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
 }
 
-.primary-button {
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  color: white;
+.primary-button{
+    background:#6366f1;
+    color:white;
 }
 
-.secondary-button {
-  background: white;
-  color: #4c1d95;
-  border: 1px solid rgba(118, 75, 162, 0.2);
+.primary-button:hover{
+    background:#4338ca;
 }
 
-.primary-button:hover,
-.secondary-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(118, 75, 162, 0.18);
+.secondary-button{
+    background:white;
+    color:#4338ca;
+    border:2px solid #4338ca;
 }
 
-.page-fade {
-  animation: fadeIn 0.4s ease-out;
-}
-
-@media (max-width: 640px) {
-  .home-card {
-    padding: 32px 24px;
-  }
+.secondary-button:hover{
+    background:#4338ca;
+    color:white;
 }

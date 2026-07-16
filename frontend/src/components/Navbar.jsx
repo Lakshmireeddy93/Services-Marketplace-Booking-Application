@@ -9,6 +9,14 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
+    sessionStorage.setItem(
+      "toast",
+      JSON.stringify({
+        message: "Logged out successfully!",
+        type: "success",
+      })
+    );
+
     logout();
     navigate("/login");
   };
@@ -49,6 +57,7 @@ function Navbar() {
                   <span className="navbar-dropdown-name">
                     {user.name}
                   </span>
+
                   <button
                     onClick={handleLogout}
                     className="navbar-logout"

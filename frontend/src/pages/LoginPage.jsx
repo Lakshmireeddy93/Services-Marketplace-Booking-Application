@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import Spinner from "../components/Spinner";
+import Toast from "../components/Toast";
 import "../styles/Auth.css";
 
 function LoginPage() {
@@ -10,8 +11,19 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState(null);
+
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedToast = sessionStorage.getItem("toast");
+
+    if (savedToast) {
+      setToast(JSON.parse(savedToast));
+      sessionStorage.removeItem("toast");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,24 +37,49 @@ function LoginPage() {
       });
 
       login(response.data.user, response.data.token);
-      navigate("/services");
+
+      setToast({
+        message: "Login successful!",
+        type: "success",
+      });
+
+      setTimeout(() => {
+        navigate("/services");
+      }, 1000);
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Login failed. Please try again."
-      );
-    } finally {
+      const message =
+        err.response?.data?.message ||
+        "Login failed. Please try again.";
+
+      setError(message);
+
+      setToast({
+        message,
+        type: "error",
+      });
+
       setLoading(false);
     }
   };
 
   return (
     <div className="auth-container page-fade">
+      <Toast
+        message={toast?.message}
+        type={toast?.type}
+        onClose={() => setToast(null)}
+      />
+
       <h2>Login</h2>
+
       {error && <p className="auth-error">{error}</p>}
+
       {loading && <Spinner message="Signing in..." />}
+
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email</label>
+
           <input
             type="email"
             value={email}
@@ -50,8 +87,10 @@ function LoginPage() {
             required
           />
         </div>
+
         <div className="form-group">
           <label>Password</label>
+
           <input
             type="password"
             value={password}
@@ -59,12 +98,19 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit" className="auth-button" disabled={loading}>
+
+        <button
+          type="submit"
+          className="auth-button"
+          disabled={loading}
+        >
           {loading ? "Signing in..." : "Login"}
         </button>
       </form>
+
       <p className="auth-footer">
-        Don't have an account? <Link to="/register">Register here</Link>
+        Don't have an account?{" "}
+        <Link to="/register">Register here</Link>
       </p>
     </div>
   );
