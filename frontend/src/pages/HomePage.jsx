@@ -14,6 +14,7 @@ const categoryImages = {
   "Appliance Repair": "/images/appliancerepair.jpg",
   "Women's Salon & Spa": "/images/womenspa.jpg",
   "Men's Salon & Massage": "/images/mensalon.jpg",
+  Painter:"/images/painter.jpg",
 };
 
 
