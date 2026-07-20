@@ -69,7 +69,8 @@ const icon = serviceIcons[service.category] || "🏠";
                   <p className="service-type">Home Service</p>
                   <h1>{service.name}</h1>
                   <p><strong>Category:</strong>{service.category}</p>
-                  <h2>₹{service.price}</h2>         
+                  <h2>₹{service.price}</h2> 
+                  <h2>⭐{service.rating}</h2>         
                   <p className="description"><b>About this Service:</b> {service.description}</p>
                   <button onClick={handleBookNow}>Book Now</button>
             </div>

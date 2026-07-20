@@ -242,3 +242,8 @@
     border-radius: 6px;
     height: 32px;
 }
+.service-rating{
+    color:#f59e0b;
+    font-weight:600;
+    font-size:15px;
+}

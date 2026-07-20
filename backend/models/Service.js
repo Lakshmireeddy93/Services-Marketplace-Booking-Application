@@ -17,6 +17,10 @@ const serviceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+   rating: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = mongoose.model("Service", serviceSchema);

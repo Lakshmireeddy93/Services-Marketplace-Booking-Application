@@ -85,6 +85,7 @@ function HomePage() {
               <p className="service-description">{service.description}</p>
               <div className="service-footer">
                 <span className="service-price">₹{service.price}</span>
+                <span className="service-rating">⭐ {service.rating}</span>
                 <button className="primary-button" onClick={() => {
                   if (user) {
                      navigate(`/services/${service._id}`);
