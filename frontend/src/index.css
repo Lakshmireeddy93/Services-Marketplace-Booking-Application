@@ -1,13 +1,94 @@
-body {
+/* ================================================
+   GLOBAL STYLES — Services Marketplace
+   Font: Inter from Google Fonts
+   Design System: Purple/Indigo premium theme
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
+:root {
+  --primary:       #6c47ff;
+  --primary-dark:  #4f2fcf;
+  --primary-light: #ede9ff;
+  --accent:        #f093fb;
+  --purple:        #764ba2;
+  --text:          #1a1a2e;
+  --text-muted:    #6b7280;
+  --white:         #ffffff;
+  --bg-light:      #f8f7ff;
+  --border:        #e5e7eb;
+  --success:       #16a34a;
+  --error:         #dc2626;
+  --shadow-sm:     0 2px 8px rgba(108, 71, 255, 0.10);
+  --shadow-md:     0 8px 24px rgba(108, 71, 255, 0.15);
+  --shadow-lg:     0 16px 40px rgba(108, 71, 255, 0.20);
+  --radius:        14px;
+  --transition:    0.25s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-light);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+}
+
+/* ---- Shared page fade-in animation ---- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+.page-fade {
+  animation: fadeInUp 0.45s ease both;
+}
+
+/* ---- Shared gradient background (auth & services pages) ---- */
+.gradient-bg {
+  background: linear-gradient(135deg, #6c47ff 0%, #764ba2 55%, #f093fb 100%);
+  min-height: calc(100vh - 72px);
+}
+
+/* ---- Utility ---- */
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; }
+input, textarea, select { font-family: inherit; }
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

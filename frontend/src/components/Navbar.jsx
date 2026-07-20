@@ -7,6 +7,7 @@ function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   const handleLogout = () => {
     sessionStorage.setItem(
@@ -16,7 +17,6 @@ function Navbar() {
         type: "success",
       })
     );
-
     logout();
     navigate("/login");
   };
@@ -33,35 +33,42 @@ function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-brand">
+        <img src="/logo.png" alt="Logo" className="navbar-logo" />
         <h2>Services Marketplace</h2>
       </Link>
 
-      <div className="navbar-links">
-        <Link to="/">Home</Link>
+      {/* Mobile hamburger */}
+      <button
+        className="navbar-hamburger"
+        onClick={() => setNavOpen((o) => !o)}
+        aria-label="Toggle menu"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <div className={`navbar-links${navOpen ? " open" : ""}`}>
+        <Link to="/" onClick={() => setNavOpen(false)}>Home</Link>
 
         {user ? (
           <>
-           
-            <Link to="/booking-history">My Bookings</Link>
+            <Link to="/services" onClick={() => setNavOpen(false)}>Services</Link>
+            <Link to="/booking-history" onClick={() => setNavOpen(false)}>My Bookings</Link>
 
             <div className="navbar-user-menu">
               <button
                 className="navbar-avatar"
                 onClick={() => setMenuOpen((open) => !open)}
+                title={user.name}
               >
                 {initials}
               </button>
 
               {menuOpen && (
                 <div className="navbar-dropdown">
-                  <span className="navbar-dropdown-name">
-                    {user.name}
-                  </span>
-
-                  <button
-                    onClick={handleLogout}
-                    className="navbar-logout"
-                  >
+                  <span className="navbar-dropdown-name">{user.name}</span>
+                  <button onClick={handleLogout} className="navbar-logout">
                     Logout
                   </button>
                 </div>
@@ -70,8 +77,8 @@ function Navbar() {
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login" className="navbar-btn-login" onClick={() => setNavOpen(false)}>Login</Link>
+            <Link to="/register" className="navbar-btn-register" onClick={() => setNavOpen(false)}>Register</Link>
           </>
         )}
       </div>

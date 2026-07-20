@@ -3,8 +3,6 @@ body,
 #root {
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .App {
@@ -17,20 +15,11 @@ body,
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .page-fade {
   animation: fadeIn 0.35s ease-out both;
-}
-
-.error-text {
-  color: #fee2e2;
-  background: rgba(220, 38, 38, 0.1);
-  padding: 16px 18px;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 20px;
 }
 
 @keyframes fadeIn {
