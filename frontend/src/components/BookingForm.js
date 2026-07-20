@@ -17,12 +17,20 @@ function BookingForm({service}){
         alert("Please fill all the details.");
         return;
     }
+    if (!/^[0-9]{10}$/.test(phone)){
+        alert("Enter valid 10 digit phone number.");
+        return;
+    }
+     try {
+       const token = localStorage.getItem("token");
+       console.log("Token:", token);
 
-    try {
-        const token = localStorage.getItem("token");
-        console.log("Token:", token);
-
-        const bookingData = {
+       if (!token) {
+          alert("Please login first");
+          navigate("/login");
+          return;
+       }
+         const bookingData = {
             service: service._id,
             name,
             phone,
@@ -54,6 +62,10 @@ function BookingForm({service}){
         alert("Booking Failed");
     }
 }
+ if(!service){
+    return <h2>Loading...</h2>
+ }
+
     
 
     return(
@@ -70,11 +82,15 @@ function BookingForm({service}){
                   onChange={(e)=>setName(e.target.value)}
                 />
                 <br /><br />
-                 <input
-                  type="text"
+                <input
+                  type="tel"
                   placeholder="Enter Phone Number"
                   value={phone}
-                  onChange={(e)=>setPhone(e.target.value)}
+                  maxLength={10}
+                  onChange={(e) => {
+                     const value = e.target.value.replace(/\D/g, "");
+                     setPhone(value);
+                   }}
                 />
                 <br /><br />
                 <textarea
@@ -83,8 +99,9 @@ function BookingForm({service}){
                   onChange={(e)=>setAddress(e.target.value)}
                 />
                 <br /><br />
-                 <input
+                <input
                   type="date"
+                  min={new Date().toISOString().split("T")[0]}
                   value={date}
                   onChange={(e)=>setDate(e.target.value)}
                 />

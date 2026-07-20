@@ -2,11 +2,19 @@ const Booking = require("../models/Booking");
 
 const createBooking = async (req, res) => {
     try {
-        const booking = new Booking({...req.body,
-            user: req.user._id});
+        console.log("req.user =", req.user);
+        console.log("req.body =", req.body);
+
+        const booking = new Booking({
+            ...req.body,
+            user: req.user._id
+        });
+
         await booking.save();
         res.status(201).json(booking);
+
     } catch (error) {
+        console.error(error);
         res.status(400).json({ message: error.message });
     }
 };
