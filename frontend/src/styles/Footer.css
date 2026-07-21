@@ -1,7 +1,3 @@
-/* ================================================
-   FOOTER — Rich 3-column layout
-   ================================================ */
-
 .footer {
   background: #0f0a1e;
   color: white;
@@ -17,7 +13,6 @@
   padding-bottom: 40px;
 }
 
-/* ---- Brand column ---- */
 .footer-brand {
   display: flex;
   flex-direction: column;
@@ -80,7 +75,6 @@
   border-color: #6c47ff;
 }
 
-/* ---- Link columns ---- */
 .footer-col h4 {
   font-size: 13px;
   font-weight: 700;
@@ -111,7 +105,6 @@
   color: #a78bfa;
 }
 
-/* ---- Divider + copyright ---- */
 .footer-bottom {
   max-width: 1160px;
   margin: 0 auto;
@@ -143,7 +136,6 @@
   color: #a78bfa;
 }
 
-/* ---- Responsive ---- */
 @media (max-width: 800px) {
   .footer {
     padding: 40px 24px 0;

@@ -65,7 +65,6 @@ function ServicesPage() {
   return (
     <div className="services-page">
       <div className="services-container page-fade">
-        {/* Header */}
         <div className="services-header">
           <h2>Available Services</h2>
           <p className="services-subtitle">
@@ -75,7 +74,6 @@ function ServicesPage() {
 
         {error && <p className="error-text">{error}</p>}
 
-        {/* Search & Filter */}
         <div className="filter-bar">
           <div className="search-input-wrap">
             <span className="search-icon">🔍</span>
@@ -99,7 +97,6 @@ function ServicesPage() {
           </select>
         </div>
 
-        {/* Grid */}
         <div className="service-grid">
           {filteredServices.length === 0 ? (
             <div className="empty-state">
