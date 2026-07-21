@@ -159,13 +159,13 @@ function RegisterPage() {
           </div>
 
           <button type="submit" className="auth-button" disabled={loading}>
-            {loading ? "Creating account..." : "Create Account"}
+            {loading ? "Creating account..." : "Sign Up"}
           </button>
         </form>
 
         <p className="auth-footer">
           Already have an account?{" "}
-          <Link to="/login" state={location.state}>Login here</Link>
+          <Link to="/login" state={location.state}>Sign in</Link>
         </p>
       </div>
     </div>
