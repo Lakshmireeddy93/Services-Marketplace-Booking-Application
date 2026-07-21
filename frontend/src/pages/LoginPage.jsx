@@ -45,11 +45,11 @@ function LoginPage() {
 
       setTimeout(() => {
         if (location.state?.service) {
-          navigate(`/services/${location.state.service._id}`, {
-            state: location.state.service,
-          });
+           navigate(`/services/${location.state.service._id}`, {
+           state: location.state.service,
+        });
         } else {
-            navigate("/");
+             navigate("/services");
           }
       }, 1000);
     } catch (err) {

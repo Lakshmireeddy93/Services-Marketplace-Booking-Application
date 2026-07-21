@@ -35,18 +35,9 @@ function ServiceDetails(){
     }
 
     function handleBookNow(){
-        const token = localStorage.getItem("token");
-
-        if(token){
-            navigate("/booking", {
+        navigate("/booking", {
             state: service
         });
-        }
-         else{
-            navigate("/login", {
-              state:{service}
-            });
-        }
     }
     if (loading){
         return <h2>Loading</h2>;
